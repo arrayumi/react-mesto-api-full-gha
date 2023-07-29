@@ -1,0 +1,5 @@
+.cards__article {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}

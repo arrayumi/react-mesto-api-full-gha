@@ -1,0 +1,10 @@
+.header__menu-item {
+    color: white;
+    text-decoration: none;
+    opacity: 1;
+    transition: opacity 1s ease;
+}
+
+.header__menu-item:hover {
+    opacity: .6;
+}

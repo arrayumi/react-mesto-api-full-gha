@@ -1,0 +1,17 @@
+.page__element {
+    width: calc(100% - (19px*2));
+    margin: auto;
+    max-width: 880px;
+}
+
+@media screen and (min-width: 768px) {
+    .page__element {
+        width: calc(100% - (100px*2));
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .page__element {
+        width: calc(100% - (200px*2));
+    }
+}

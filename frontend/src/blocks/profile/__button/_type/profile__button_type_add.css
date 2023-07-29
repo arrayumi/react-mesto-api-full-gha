@@ -1,0 +1,25 @@
+.profile__button_type_add {
+    width: 100%;
+    min-height: 50px;
+    border: 2px solid white;
+    background-image: url(../../../../images/add-button-icon.svg);
+    background-size: 16px;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 2px;
+    max-width: 300px;
+}
+
+@media screen and (min-width: 768px) {
+    .profile__button_type_add {
+        justify-self: flex-end;
+        max-width: 150px;
+        background-size: 22px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .profile__button_type_add {
+        justify-self: flex-end;
+    }
+}

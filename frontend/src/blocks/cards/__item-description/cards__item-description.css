@@ -1,0 +1,7 @@
+.cards__item-description{
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    padding: 25px 20px 26px;
+    align-items: center;
+}

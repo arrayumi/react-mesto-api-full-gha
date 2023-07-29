@@ -1,0 +1,19 @@
+.header__menu-list {
+    list-style: none;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    margin-right: 27px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+}
+
+@media screen and (min-width: 768px) {
+    .header__menu-list {
+        margin: 0;
+        font-size: 18px;
+        line-height: 22px;
+    }
+}
