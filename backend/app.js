@@ -5,10 +5,12 @@ const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
 
-const { PORT, DB_URL } = process.env;
 const app = express();
 
 const { errors: celebrateErrors } = require('celebrate');
+const config = require('./config');
+
+const { PORT, DB_URL } = config;
 
 const usersRouter = require('./routes/users');
 const cardsRouter = require('./routes/cards');
