@@ -1,8 +1,8 @@
 const allowedCors = [
   'http://localhost:3001',
   'https://localhost:3001',
-  'https://arrayumi.mesto.backend.nomoredomains.sbs/',
-  'http://arrayumi.mesto.backend.nomoredomains.sbs/',
+  'https://arrayumi.mesto.nomoredomains.sbs',
+  'http://arrayumi.mesto.nomoredomains.sbs',
 ];
 
 const cors = (req, res, next) => {

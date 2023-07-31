@@ -1,5 +1,5 @@
-export const BASE_URL = 'http://localhost:3000';
-// export const BASE_URL = 'https://arrayumi.mesto.backend.nomoredomains.sbs';
+// export const BASE_URL = 'http://localhost:3000';
+export const BASE_URL = 'https://arrayumi.mesto.backend.nomoredomains.sbs';
 
 function checkRes(res) {
     if (res.ok) return res.json();
