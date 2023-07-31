@@ -15,6 +15,7 @@ const { createUser, login } = require('./controllers/users');
 const { auth } = require('./middlewares/auth');
 const errors = require('./middlewares/errors');
 const { validateCreateUser, validateLogin } = require('./middlewares/validation');
+const cors = require('./middlewares/cors');
 
 mongoose.connect(DB_URL)
   .then(() => {
@@ -24,6 +25,7 @@ mongoose.connect(DB_URL)
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(cors);
 
 app.post('/signup', validateCreateUser, createUser);
 app.post('/signin', validateLogin, login);

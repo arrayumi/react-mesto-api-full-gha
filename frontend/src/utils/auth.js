@@ -1,4 +1,5 @@
-export const BASE_URL = 'https://auth.nomoreparties.co';
+export const BASE_URL = 'http://localhost:3000';
+// export const BASE_URL = 'https://arrayumi.mesto.backend.nomoredomains.sbs';
 
 function checkRes(res) {
     if (res.ok) return res.json();
@@ -29,12 +30,11 @@ export const authorize = ({ email, password }) => {
         .then(res => checkRes(res));
 };
 
-export const getContent = (token) => {
+export const getContent = () => {
     return fetch(`${BASE_URL}/users/me`, {
         method: 'GET',
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
         },
     })
         .then(res => checkRes(res));

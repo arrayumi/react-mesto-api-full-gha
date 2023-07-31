@@ -133,9 +133,11 @@ const login = (req, res, next) => {
             .cookie('jwt', token, {
               maxAge: 3600 * 24 * 7,
               httpOnly: true,
+              sameSite: 'none',
+              secure: true,
             })
             .status(200)
-            .send({ token });
+            .send({ _id: user._id });
         })
         .catch(next);
     })
@@ -151,7 +153,7 @@ const login = (req, res, next) => {
 const getUserinfo = (req, res, next) => {
   User.findById(req.user._id)
     .then((user) => {
-      if (!user) throw new NotFoundError('Пользователь с данный id не найден');
+      if (!user) throw new NotFoundError('Пользователь с данным id не найден');
       res.send(user);
     })
     .catch((error) => {

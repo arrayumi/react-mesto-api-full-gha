@@ -69,14 +69,13 @@ class Api {
             .then((res) => this._checkRes(res));
     }
 
-
 }
 
 const api = new Api({
-    url: 'https://mesto.nomoreparties.co/v1/cohort-64',
+    // url: 'https://arrayumi.mesto.backend.nomoredomains.sbs',
+    url: 'http://localhost:3000',
     headers: {
         'Content-Type': 'application/json',
-        authorization: 'f1afbe96-9e70-49c1-99e4-7a6e5025fa3b'
     }
 });
 

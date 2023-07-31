@@ -30,17 +30,20 @@ function App() {
     const [isSucess, setIsSucess] = useState(true);
 
     useEffect(() => {
-        Promise.all([
-            api.getUserInfo(),
-            api.getCards()
-        ])
-            .then(([userData, cards]) => {
-                setCurrentUser(userData);
-                setCards(cards);
-            })
-            .catch(err => {
-                console.log(err);
-            });
+        const token = localStorage.getItem('_id');
+        if (token) {
+            Promise.all([
+                api.getUserInfo(),
+                api.getCards()
+            ])
+                .then(([userData, cards]) => {
+                    setCurrentUser(userData);
+                    setCards(cards);
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+        }
     }, []);
 
 
@@ -68,9 +71,9 @@ function App() {
         setSelectedCard({});
     }
 
-    function handleLoginState(token) {
+    function handleLoginState() {
         setIsLoggedIn(true);
-        auth.getContent(token)
+        auth.getContent()
             .then((data) => {
                 setEmail(data.data.email);
             })
@@ -78,12 +81,12 @@ function App() {
     }
 
     function handleLogout() {
-        localStorage.removeItem('token');
+        localStorage.removeItem('_id');
         setIsLoggedIn(false);
     }
 
     function checkToken() {
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('_id');
         if (token) {
             handleLoginState(token);
             navigate('/cards', { replace: true });
@@ -163,9 +166,9 @@ function App() {
     function handleLogin({ email, password }) {
         auth.authorize({ email, password })
             .then((data) => {
-                if (data.token) {
-                    localStorage.setItem('token', data.token);
-                    handleLoginState(data.token);
+                if (data._id) {
+                    localStorage.setItem('_id', data._id);
+                    handleLoginState();
                     navigate('/cards', { replace: true });
                 }
             }
