@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const config = require('../config');
 
 const User = require('../models/user');
 
@@ -10,7 +11,6 @@ const ConflictError = require('../errors/conflict-err');
 const UnauthorizedError = require('../errors/unauthorized-err');
 
 const SALT_ROUNDS = 10;
-const { DEV_SECRET } = require('../middlewares/auth');
 
 const getUsers = (req, res, next) => {
   User.find({})
@@ -128,7 +128,7 @@ const login = (req, res, next) => {
       bcrypt.compare(password, user.password)
         .then((isPasswordValid) => {
           if (!isPasswordValid) throw new UnauthorizedError('Пароль указан неверно');
-          const token = jwt.sign({ _id: user._id }, process.env.NODE_ENV === 'production' ? process.env.JWT_SECRET : DEV_SECRET, { expiresIn: '7d' });
+          const token = jwt.sign({ _id: user._id }, config.JWT_SECRET, { expiresIn: '7d' });
           res
             .cookie('jwt', token, {
               maxAge: 3600 * 24 * 7,
