@@ -30,20 +30,18 @@ function App() {
     const [isSucess, setIsSucess] = useState(true);
 
     useEffect(() => {
-        const token = localStorage.getItem('_id');
-        if (token) {
-            Promise.all([
-                api.getUserInfo(),
-                api.getCards()
-            ])
-                .then(([userData, cards]) => {
-                    setCurrentUser(userData);
-                    setCards(cards);
-                })
-                .catch(err => {
-                    console.log(err);
-                });
-        }
+        Promise.all([
+            api.getUserInfo(),
+            api.getCards()
+        ])
+            .then(([userData, cards]) => {
+                setCurrentUser(userData);
+                setCards(cards);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+
     }, []);
 
 
@@ -75,7 +73,7 @@ function App() {
         setIsLoggedIn(true);
         auth.getContent()
             .then((data) => {
-                setEmail(data.data.email);
+                setEmail(data.email);
             })
             .catch(err => console.log(err));
     }
@@ -88,7 +86,7 @@ function App() {
     function checkToken() {
         const token = localStorage.getItem('_id');
         if (token) {
-            handleLoginState(token);
+            handleLoginState();
             navigate('/cards', { replace: true });
         }
     }
@@ -106,7 +104,7 @@ function App() {
     }, [])
 
     function handleCardLike(card) {
-        const isLiked = card.likes.some(i => i._id === currentUser._id);
+        const isLiked = card.likes.some(i => i === currentUser._id);
 
         api.changeLikeCardStatus(card._id, !isLiked)
             .then((newCard) => {

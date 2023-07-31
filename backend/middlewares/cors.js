@@ -1,5 +1,6 @@
 const allowedCors = [
-  'localhost:3000',
+  'http://localhost:3001',
+  'https://localhost:3001',
   'https://arrayumi.mesto.backend.nomoredomains.sbs/',
   'http://arrayumi.mesto.backend.nomoredomains.sbs/',
 ];
@@ -19,6 +20,7 @@ const cors = (req, res, next) => {
   if (method === 'OPTIONS') {
     res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
     res.header('Access-Control-Allow-Headers', requestHeaders);
+    res.header('Access-Control-Max-Age', '3600');
 
     return res.end();
   }

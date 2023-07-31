@@ -5,8 +5,8 @@ export default function Card({ card: { link, name, likes, _id, owner }, onCardCl
 
     const currentUser = useContext(CurrentUserContext);
 
-    const isOwn = owner._id === currentUser._id;
-    const isLiked = likes.some(i => i._id === currentUser._id);
+    const isOwn = owner === currentUser._id;
+    const isLiked = likes.some(i => i === currentUser._id);
     const cardLikeButtonClassName = ( 
         `cards__like-button ${isLiked && 'cards__like-button_active'}` 
       );
