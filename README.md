@@ -13,4 +13,4 @@ IP-адрес 51.250.85.198
 
 Frontend https://arrayumi.mesto.nomoredomains.sbs/
 
-Backend https://...
+Backend https://arrayumi.mesto.backend.nomoredomains.sbs/
