@@ -16,6 +16,7 @@ const { auth } = require('./middlewares/auth');
 const errors = require('./middlewares/errors');
 const { validateCreateUser, validateLogin } = require('./middlewares/validation');
 const cors = require('./middlewares/cors');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 mongoose.connect(DB_URL)
   .then(() => {
@@ -26,6 +27,8 @@ app.use(helmet());
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors);
+
+app.use(requestLogger);
 
 app.post('/signup', validateCreateUser, createUser);
 app.post('/signin', validateLogin, login);
@@ -38,6 +41,8 @@ app.use('/cards', cardsRouter);
 app.use('*', (req, res) => {
   res.status(404).send({ message: 'Неверный адрес запроса' });
 });
+
+app.use(errorLogger);
 
 app.use(celebrateErrors());
 app.use(errors);
