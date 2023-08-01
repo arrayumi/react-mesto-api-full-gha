@@ -81,6 +81,7 @@ function App() {
     function handleLogout() {
         localStorage.removeItem('_id');
         setIsLoggedIn(false);
+        setCurrentUser({});
     }
 
     function checkToken() {
