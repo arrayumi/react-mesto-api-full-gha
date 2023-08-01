@@ -137,7 +137,13 @@ const login = (req, res, next) => {
                 secure: true,
               })
               .status(200)
-              .send({ _id: user._id, email: user.email });
+              .send({
+                _id: user._id,
+                email: user.email,
+                name: user.name,
+                about: user.about,
+                avatar: user.avatar,
+              });
           })
           .catch(next);
       }
