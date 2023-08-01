@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 51.250.85.198
+IP 51.250.85.198
 
 Frontend https://arrayumi.mesto.nomoredomains.sbs/
 

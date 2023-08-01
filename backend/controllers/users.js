@@ -124,21 +124,23 @@ const login = (req, res, next) => {
   User.findOne({ email }).select('+password')
     .then((user) => {
       if (!user) throw new UnauthorizedError('Пользователь с таким email не существует');
-      bcrypt.compare(password, user.password)
-        .then((isPasswordValid) => {
-          if (!isPasswordValid) throw new UnauthorizedError('Пароль указан неверно');
-          const token = jwt.sign({ _id: user._id }, config.JWT_SECRET, { expiresIn: '7d' });
-          res
-            .cookie('jwt', token, {
-              maxAge: 3600 * 24 * 7,
-              httpOnly: true,
-              sameSite: 'none',
-              secure: true,
-            })
-            .status(200)
-            .send({ _id: user._id, email: user.email });
-        })
-        .catch(next);
+      else {
+        bcrypt.compare(password, user.password)
+          .then((isPasswordValid) => {
+            if (!isPasswordValid) throw new UnauthorizedError('Пароль указан неверно');
+            const token = jwt.sign({ _id: user._id }, config.JWT_SECRET, { expiresIn: '7d' });
+            res
+              .cookie('jwt', token, {
+                maxAge: 3600 * 24 * 7,
+                httpOnly: true,
+                sameSite: 'none',
+                secure: true,
+              })
+              .status(200)
+              .send({ _id: user._id, email: user.email });
+          })
+          .catch(next);
+      }
     })
     .catch((error) => {
       if ((error instanceof mongoose.Error.CastError)
