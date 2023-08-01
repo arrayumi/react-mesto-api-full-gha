@@ -55,7 +55,7 @@ const addLike = (req, res, next) => {
   )
     .orFail(new NotFoundError('Некорректный id карточки'))
     .then((card) => {
-      res.status(200).send({ data: card });
+      res.status(200).send(card);
     })
     .catch((error) => {
       if (error instanceof mongoose.Error.CastError) {
@@ -75,7 +75,7 @@ const deleteLike = (req, res, next) => {
   )
     .orFail(new NotFoundError('Некорректный id карточки'))
     .then((card) => {
-      res.status(200).send({ data: card });
+      res.status(200).send(card);
     })
     .catch((error) => {
       if (error instanceof mongoose.Error.CastError) {
