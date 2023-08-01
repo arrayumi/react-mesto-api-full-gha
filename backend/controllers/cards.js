@@ -8,7 +8,7 @@ const ForbiddenError = require('../errors/forbidden-err');
 const getCards = (req, res, next) => {
   Card.find({})
     .then((cards) => {
-      res.send(cards);
+      if (cards) res.status(200).send(cards);
     })
     .catch(next);
 };
@@ -35,7 +35,7 @@ const deleteCard = (req, res, next) => {
     .orFail(new NotFoundError('Некорректный id карточки'))
     .then((card) => {
       if (card.owner.toString() !== req.user._id) throw new ForbiddenError('Нельзя удалить чужую карточку');
-      res.send({ data: card });
+      res.status(200).send({ data: card });
     })
     .catch((error) => {
       if (error instanceof mongoose.Error.CastError) {
@@ -55,7 +55,7 @@ const addLike = (req, res, next) => {
   )
     .orFail(new NotFoundError('Некорректный id карточки'))
     .then((card) => {
-      res.send({ data: card });
+      res.status(200).send({ data: card });
     })
     .catch((error) => {
       if (error instanceof mongoose.Error.CastError) {
@@ -75,7 +75,7 @@ const deleteLike = (req, res, next) => {
   )
     .orFail(new NotFoundError('Некорректный id карточки'))
     .then((card) => {
-      res.send({ data: card });
+      res.status(200).send({ data: card });
     })
     .catch((error) => {
       if (error instanceof mongoose.Error.CastError) {

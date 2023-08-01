@@ -15,7 +15,7 @@ const SALT_ROUNDS = 10;
 const getUsers = (req, res, next) => {
   User.find({})
     .then((users) => {
-      res.send(users);
+      if (users) res.status(200).send(users);
     })
     .catch(next);
 };
@@ -59,7 +59,7 @@ const getUser = (req, res, next) => {
   User.findById(userId)
     .orFail(new NotFoundError('Пользователь по данному id не найден'))
     .then((user) => {
-      res.send(user);
+      res.status(200).send(user);
     })
     .catch((error) => {
       if (error instanceof mongoose.Error.CastError) {
@@ -83,11 +83,10 @@ const updateProfile = (req, res, next) => {
       if (!user) {
         throw new NotFoundError('Пользователь по данному id не найден');
       }
-      res.send(user);
+      res.status(200).send(user);
     })
     .catch((error) => {
-      if ((error instanceof mongoose.Error.CastError)
-        || (error instanceof mongoose.Error.ValidationError)) {
+      if (error instanceof mongoose.Error.ValidationError) {
         throw new ValidationError('Некорректные данные');
       }
       next(error);
@@ -108,7 +107,7 @@ const updateAvatar = (req, res, next) => {
       if (!user) {
         throw new NotFoundError('Пользователь по данному id не найден');
       }
-      res.send(user);
+      res.status(200).send(user);
     })
     .catch((error) => {
       if ((error instanceof mongoose.Error.CastError)
@@ -154,7 +153,9 @@ const getUserinfo = (req, res, next) => {
   User.findById(req.user._id)
     .then((user) => {
       if (!user) throw new NotFoundError('Пользователь с данным id не найден');
-      res.send(user);
+      else {
+        res.status(200).send(user);
+      }
     })
     .catch((error) => {
       if ((error instanceof mongoose.Error.CastError)
