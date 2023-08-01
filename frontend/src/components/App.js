@@ -42,7 +42,7 @@ function App() {
                 console.log(err);
             });
 
-    }, []);
+    }, [navigate]);
 
 
     function handleEditAvatarClick() {

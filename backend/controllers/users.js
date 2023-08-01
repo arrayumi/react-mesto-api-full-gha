@@ -59,7 +59,11 @@ const getUser = (req, res, next) => {
   User.findById(userId)
     .orFail(new NotFoundError('Пользователь по данному id не найден'))
     .then((user) => {
-      res.status(200).send(user);
+      if (!user) {
+        throw new NotFoundError('Пользователь по данному id не найден');
+      } else {
+        res.status(200).send(user);
+      }
     })
     .catch((error) => {
       if (error instanceof mongoose.Error.CastError) {
