@@ -9,6 +9,7 @@ const app = express();
 
 const { errors: celebrateErrors } = require('celebrate');
 const config = require('./config');
+const limiter = require('./middlewares/limiter');
 
 const { PORT, DB_URL } = config;
 
@@ -30,6 +31,7 @@ app.use(helmet());
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors);
+app.use(limiter);
 
 app.use(requestLogger);
 
