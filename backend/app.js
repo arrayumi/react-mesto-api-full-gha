@@ -21,6 +21,7 @@ const errors = require('./middlewares/errors');
 const { validateCreateUser, validateLogin } = require('./middlewares/validation');
 const cors = require('./middlewares/cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const NotFoundError = require('./errors/not-found-err');
 
 mongoose.connect(DB_URL)
   .then(() => {
@@ -49,8 +50,8 @@ app.use(auth);
 app.use('/users', usersRouter);
 app.use('/cards', cardsRouter);
 
-app.use('*', (req, res) => {
-  res.status(404).send({ message: 'Неверный адрес запроса' });
+app.use('*', (req, res, next) => {
+  next(new NotFoundError('Неверный адрес запроса'));
 });
 
 app.use(errorLogger);
