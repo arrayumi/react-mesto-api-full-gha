@@ -2,4 +2,5 @@
     background-color: black;
     color: white;
     font-family: 'Inter', 'Arial', sans-serif;
+    min-height: 100vh;
 }

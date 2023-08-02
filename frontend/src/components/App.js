@@ -172,7 +172,11 @@ function App() {
                 }
             }
             )
-            .catch((err) => console.log(err));
+            .catch((err) => {
+                console.log(err);
+                handleInfoTooltipOpen();
+                handleInfoMessage(false);
+            });
     }
 
     return (
