@@ -1,11 +1,9 @@
-[![Статус тестов](../../actions/workflows/tests.yml/badge.svg)](../../actions/workflows/tests.yml)
-
 # Приложение Mesto
 Репозиторий для приложения проекта `Mesto`, включающий фронтенд и бэкенд части приложения со следующими возможностями: авторизации и регистрации пользователей, операции с карточками и пользователями.
 
 ## Ссылки на проект:
-Frontend https://arrayumi.mesto.nomoredomains.sbs/
-Backend https://arrayumi.mesto.backend.nomoredomains.sbs/
+* Frontend https://arrayumi.mesto.nomoredomains.sbs/
+* Backend https://arrayumi.mesto.backend.nomoredomains.sbs/
 
 ### Структура проекта:
 * /frontend - фронтенд-часть на React
