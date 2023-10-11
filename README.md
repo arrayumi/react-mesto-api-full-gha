@@ -30,4 +30,4 @@
 * Обеспечение безопасности заголовков запросов
 
 ### Стек технологий:
-HTML | CSS | БЭМ | React | Node.js | express.js | MongoDB | Nginx
+`HTML` `CSS` `БЭМ` `React` `Node.js` `express.js` `MongoDB` `Nginx`
